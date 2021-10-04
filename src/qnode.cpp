@@ -736,7 +736,7 @@ void QNode::Update_ORCA_Param(float param[4]){
 	for (int i = 0; i < 4; i++) {
 		if (param[i] != 0){
 			uavs_pathplan.params[i] = param[i];
-			// orca_param[i] = param[i];
+			orca_param[i] = param[i];
 		}
 	}
 }
