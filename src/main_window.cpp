@@ -1283,11 +1283,11 @@ void MainWindow::updateInfoLogger(){
             } else{ continue; }
 
             if (checkbox_stat.print_imu){
-                Imu imu_data = qnode.GetImu_uavs(it);
-                float quat[4] = {imu_data.orientation.w, imu_data.orientation.x, imu_data.orientation.y, imu_data.orientation.z};
-                outdoor_gcs::Angles uav_euler = qnode.quaternion_to_euler(quat);
-                ui.info_logger->addItem("Roll: " + QString::number(uav_euler.roll*180/3.14159, 'f', 2) + ". Pitch: " + 
-                                QString::number(uav_euler.pitch*180/3.14159, 'f', 2) + ". Yaw: " + QString::number(uav_euler.yaw*180/3.14159, 'f', 2));
+                // Imu imu_data = qnode.GetImu_uavs(it);
+                // float quat[4] = {imu_data.orientation.w, imu_data.orientation.x, imu_data.orientation.y, imu_data.orientation.z};
+                // outdoor_gcs::Angles uav_euler = qnode.quaternion_to_euler(quat);
+                ui.info_logger->addItem("Roll: " + QString::number(UAVs[it].ang_cur[0], 'f', 2) + ". Pitch: " + 
+                                QString::number(UAVs[it].ang_cur[1], 'f', 2) + ". Yaw: " + QString::number(UAVs[it].ang_cur[2], 'f', 2));
                 if (!UAVs[it].imuReceived){
                     int item_index = ui.info_logger->count()-1;
                     ui.info_logger->item(item_index)->setForeground(Qt::red);
@@ -1369,11 +1369,13 @@ void MainWindow::updateInfoLogger(){
     } else{ // Print by item
         if (checkbox_stat.print_imu){
             for (const auto &it : avail_uavind){
-                Imu imu_data = qnode.GetImu_uavs(it);
-                float quat[4] = {imu_data.orientation.w, imu_data.orientation.x, imu_data.orientation.y, imu_data.orientation.z};
-                outdoor_gcs::Angles uav_euler = qnode.quaternion_to_euler(quat);
-                ui.info_logger->addItem("uav " + QString::number(it+1) + ": Roll: " + QString::number(uav_euler.roll*180/3.14159, 'f', 2) + ". Pitch: " + 
-                                QString::number(uav_euler.pitch*180/3.14159, 'f', 2) + ". Yaw: " + QString::number(uav_euler.yaw*180/3.14159, 'f', 2));
+                // Imu imu_data = qnode.GetImu_uavs(it);
+                // float quat[4] = {imu_data.orientation.w, imu_data.orientation.x, imu_data.orientation.y, imu_data.orientation.z};
+                // outdoor_gcs::Angles uav_euler = qnode.quaternion_to_euler(quat);
+                // ui.info_logger->addItem("uav " + QString::number(it+1) + ": Roll: " + QString::number(uav_euler.roll*180/3.14159, 'f', 2) + ". Pitch: " + 
+                //                 QString::number(uav_euler.pitch*180/3.14159, 'f', 2) + ". Yaw: " + QString::number(uav_euler.yaw*180/3.14159, 'f', 2));
+                ui.info_logger->addItem("Roll: " + QString::number(UAVs[it].ang_cur[0], 'f', 2) + ". Pitch: " + 
+                                QString::number(UAVs[it].ang_cur[1], 'f', 2) + ". Yaw: " + QString::number(UAVs[it].ang_cur[2], 'f', 2));
                 if (!UAVs[it].imuReceived){
                     int item_index = ui.info_logger->count()-1;
                     ui.info_logger->item(item_index)->setForeground(Qt::red);

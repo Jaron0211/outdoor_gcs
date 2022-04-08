@@ -380,6 +380,14 @@ void QNode::uavs_state_callback(const mavros_msgs::State::ConstPtr &msg, int ind
 void QNode::uavs_imu_callback(const sensor_msgs::Imu::ConstPtr &msg, int ind){
 	uavs_imu[ind] = *msg;
 	UAVs_info[ind].preimuReceived = true;
+	UAVs_info[ind].acc_cur[0] = uavs_imu[ind].linear_acceleration.x;
+	UAVs_info[ind].acc_cur[1] = uavs_imu[ind].linear_acceleration.y;
+	UAVs_info[ind].acc_cur[2] = uavs_imu[ind].linear_acceleration.z;
+	float quat[4] = {uavs_imu[ind].orientation.w, uavs_imu[ind].orientation.x, uavs_imu[ind].orientation.y, uavs_imu[ind].orientation.z};
+	outdoor_gcs::Angles uav_euler = quaternion_to_euler(quat);
+	UAVs_info[ind].ang_cur[0] = uav_euler.roll*180/3.14159;
+	UAVs_info[ind].ang_cur[1] = uav_euler.pitch*180/3.14159;
+	UAVs_info[ind].ang_cur[2] = uav_euler.yaw*180/3.14159;
 }
 void QNode::uavs_gps_callback(const outdoor_gcs::GPSRAW::ConstPtr &msg, int ind){
 	uavs_gps[ind] = *msg;

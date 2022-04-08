@@ -106,6 +106,8 @@ namespace outdoor_gcs {
 		int id = 0;
 		float pos_cur[3] = {99};
 		float vel_cur[3] = {0};
+		float acc_cur[3] = {0};
+		float ang_cur[3] = {0}; // roll, pitch, yaw
 		float pos_des[3] = {0};
 		float pos_ini[3] = {0};
 		float pos_fin[3] = {0};
