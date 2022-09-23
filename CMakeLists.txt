@@ -26,7 +26,7 @@ include_directories(${catkin_INCLUDE_DIRS})
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
 find_package(catkin REQUIRED COMPONENTS
 message_generation 
-#qt_build ########## comment out this line for qt5 ##########
+qt_build ########## comment out this line for qt5 ##########
 roscpp
 geometry_msgs
 sensor_msgs
@@ -89,7 +89,7 @@ include_directories(${catkin_INCLUDE_DIRS})
 
 # this comes from qt_build's qt-ros.cmake which is automatically 
 # included via the dependency call in package.xml
-# rosbuild_prepare_qt4(QtCore QtGui) # Add the appropriate components to the component list here ########## comment out this line for qt5 ##########
+rosbuild_prepare_qt4(QtCore QtGui) # Add the appropriate components to the component list here ########## comment out this line for qt5 ##########
 
 ##############################################################################
 # Sections
@@ -102,13 +102,13 @@ file(GLOB_RECURSE QT_MOC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINKS in
 
 ########### Comment out the part according ###########
 
-#QT4_ADD_RESOURCES(QT_RESOURCES_CPP ${QT_RESOURCES})
-#QT4_WRAP_UI(QT_FORMS_HPP ${QT_FORMS})
-#QT4_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
+QT4_ADD_RESOURCES(QT_RESOURCES_CPP ${QT_RESOURCES})
+QT4_WRAP_UI(QT_FORMS_HPP ${QT_FORMS})
+QT4_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
 
-QT5_ADD_RESOURCES(QT_RESOURCES_CPP ${QT_RESOURCES})
-QT5_WRAP_UI(QT_FORMS_HPP ${QT_FORMS})
-QT5_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
+#QT5_ADD_RESOURCES(QT_RESOURCES_CPP ${QT_RESOURCES})
+#QT5_WRAP_UI(QT_FORMS_HPP ${QT_FORMS})
+#QT5_WRAP_CPP(QT_MOC_HPP ${QT_MOC})
 
 ##############################################################################
 # Sources
@@ -124,7 +124,6 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 add_executable(outdoor_gcs ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
 add_dependencies(outdoor_gcs outdoor_gcs_generate_messages_cpp)
 
-#target_link_libraries(outdoor_gcs ${QT_LIBRARIES} ${catkin_LIBRARIES})
-target_link_libraries(outdoor_gcs ${QT_LIBRARIES} ${catkin_LIBRARIES} Qt5::Widgets)
+target_link_libraries(outdoor_gcs ${QT_LIBRARIES} ${catkin_LIBRARIES})
 install(TARGETS outdoor_gcs RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
