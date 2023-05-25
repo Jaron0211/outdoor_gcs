@@ -276,7 +276,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[1] = 0.5;
+        KeyPress_target[1] = abs(ui.fly_speed_input->text().toFloat());
     }
     
     if(event->key() == Qt::Key_D)
@@ -284,7 +284,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[1] = -0.5;
+        KeyPress_target[1] = -abs(ui.fly_speed_input->text().toFloat());
     }
 
     if(event->key() == Qt::Key_W)
@@ -292,7 +292,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[0] = 0.5;
+        KeyPress_target[0] = abs(ui.fly_speed_input->text().toFloat());
     }
     
     if(event->key() == Qt::Key_S)
@@ -300,7 +300,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[0] = -0.5;
+        KeyPress_target[0] = -abs(ui.fly_speed_input->text().toFloat());
     }
 
     if(event->key() == Qt::Key_Q)
@@ -308,7 +308,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[3] = 30;
+        KeyPress_target[3] = abs(ui.rotation_speed_input->text().toFloat());
     }
     
     if(event->key() == Qt::Key_E)
@@ -316,7 +316,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[3] = -30;
+        KeyPress_target[3] = -abs(ui.rotation_speed_input->text().toFloat());
     }
 
     if(event->key() == Qt::Key_Z)
@@ -324,7 +324,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[2] = 0.5;
+        KeyPress_target[2] = abs(ui.climb_speed_input->text().toFloat());
     }
     
     if(event->key() == Qt::Key_C)
@@ -332,7 +332,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(event->isAutoRepeat()){
             return;
         }
-        KeyPress_target[2] = -0.5;
+        KeyPress_target[2] = -abs(ui.climb_speed_input->text().toFloat());
     }
 
     bool mask[3] = {false, true, false};

@@ -11,6 +11,8 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "variant": "cpp",
-        "condition_variable": "cpp"
+        "condition_variable": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp"
     }
 }
